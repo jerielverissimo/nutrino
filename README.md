@@ -1,4 +1,4 @@
-# nutrino
+# Nutrino [![Build Status](https://travis-ci.org/jerielverissimo/nutrino.svg?branch=master)](https://travis-ci.org/jerielverissimo/nutrino)
 
 A new Flutter project.
 
