@@ -8,8 +8,8 @@ android:
   components:
     - tools
     - platform-tools
-    - build-tools-25.0.3
-    - android-25
+    - build-tools-28.0.3
+    - android-28
     - sys-img-armeabi-v7a-google_apis-25
     - extra-android-m2repository
     - extra-google-m2repository
@@ -33,7 +33,7 @@ before_script:
   - gem install coveralls-lcov
 script:
   - ./flutter/bin/flutter test test/features/*
-  - ./flutter/bin/flutter -v build apk
+  - ./flutter/bin/flutter -v build apk --release
 after_success:
   - coveralls-lcov coverage/lcov.info 
 cache:
