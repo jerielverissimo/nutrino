@@ -20,6 +20,12 @@ addons:
     packages:
       - libstdc++6
       - fonts-droid
+      - curl
+
+before_install:
+  # Execute Nutrino prebuild webhook.
+  - ./.travis/10_prebuild.sh $WEBHOOK_URL
+
 before_script:
  # Setup gradle.
   - wget https://services.gradle.org/distributions/gradle-4.10.3-bin.zip
@@ -54,6 +60,7 @@ script:
   - flutter doctor
   - ./flutter/bin/flutter test test/features/*
   - ./flutter/bin/flutter -v build apk --release
+
 after_success:
   - export AUTHOR_NAME=`git log -1 "$TRAVIS_COMMIT" --pretty="%aN"`
   - export COMMITTER_NAME=`git log -1 "$TRAVIS_COMMIT" --pretty="%cN"`
@@ -63,6 +70,12 @@ after_success:
   - npm install --save @wetransfer/js-sdk
   - export BUILD_OUTPUT_URL=`node ./.travis/utils/runUpload.js`
   - coveralls-lcov coverage/lcov.info 
+  # Post in chat
+  - ./.travis/40_postbuild.sh success $WEBHOOK_URL $BUILD_OUTPUT_URL
+
+after_failure:
+  - ./.travis/40_postbuild.sh failure $WEBHOOK_URL
+
 cache:
   directories:
     - $HOME/.pub-cache
