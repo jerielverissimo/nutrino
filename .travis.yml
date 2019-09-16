@@ -69,7 +69,7 @@ after_success:
   # Upload to WeTransfer
   - npm install --save @wetransfer/js-sdk
   - export BUILD_OUTPUT_URL=`node ./.travis/utils/runUpload.js`
-  - coveralls-lcov coverage/lcov.info 
+  - coveralls-lcov coverage/lcov.info
   # Post in chat
   - ./.travis/40_postbuild.sh success $WEBHOOK_URL $BUILD_OUTPUT_URL
 

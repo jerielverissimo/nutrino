@@ -1,6 +1,7 @@
 import 'package:mockito/mockito.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:dartz/dartz.dart';
+import 'package:nutrino/core/usecases/usecase.dart';
 
 import 'package:nutrino/features/user/domain/entities/user.dart';
 import 'package:nutrino/features/user/domain/usecases/get_user.dart';
@@ -36,7 +37,7 @@ void main() {
     when(mockUserRepository.getUsers()).thenAnswer((_) async => Right(users));
 
     // act
-    final result = await usecase.execute();
+    final result = await usecase(NoParams());
 
     // assert
     expect(result, Right(users));

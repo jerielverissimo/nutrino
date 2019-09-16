@@ -4,8 +4,8 @@ import 'package:meta/meta.dart';
 class UserModel extends User {
   UserModel({
     @required String name,
-    @required String username,
     @required String email,
+    @required String username,
     @required String password,
   }) : super(name: name, username: username, email: email, password: password);
 
